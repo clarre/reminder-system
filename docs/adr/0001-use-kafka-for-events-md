@@ -1,0 +1,40 @@
+# ADR 0001: Use Kafka for Event Communication
+
+## Status
+Accepted
+
+## Date
+2025-05-01
+
+## Context
+I am building a todo/reminder system using a monorepo architecture with multiple services written in Node.js (Fastify) and Rust (Axum). The system needs to handle asynchronous communication between services such as `reminder-service` and `notification-service`.
+
+Traditional REST would tightly couple services and complicate scalability and error handling for background tasks like sending notifications.
+
+## Decision
+We will use **Kafka** as the message broker for asynchronous, event-driven communication between services.
+
+- Node.js services will use `kafkajs`
+- Rust services will use `rdkafka`
+- Events will follow defined schemas and be versioned
+
+## Consequences
+### Pros
+- Services become loosely coupled
+- Can scale each service independently
+- Enables retry logic and buffering via Kafka
+- Well-supported client libraries
+
+### Cons
+- Requires managing Kafka + Zookeeper
+- Additional infrastructure and setup complexity
+- Learning curve for Kafka and event design
+
+## Alternatives Considered
+- RESTful callbacks (tight coupling, fragile)
+- Redis pub/sub (simpler but not durable or scalable enough)
+
+## Notes
+Kafka is started via Docker Compose and each service declares `KAFKA_BROKER` in its environment.
+
+We will consider using schemas (JSON Schema or Avro) for validation later on.
