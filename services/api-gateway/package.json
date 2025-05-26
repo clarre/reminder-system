@@ -1,0 +1,18 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "fastify": "^4.27.2",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.3"
+  }
+}
