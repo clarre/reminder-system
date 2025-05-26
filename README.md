@@ -49,6 +49,10 @@ Then visit [http://localhost:3000/health](http://localhost:3000/health) to test 
 
 ---
 
+### 4. Start kafka
+
+Run `docker compose up` to start kafka service and connect Redpanda for overview, go to localhost:8080 to get an overview and monitoring of kafka
+
 ## 🛠 Tech Stack
 
 - **API Gateway**: Node.js + Fastify
